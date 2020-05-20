@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { render } from 'react-dom';
 import Dock from 'react-dock';
+import CaptionPanel from './containers/CaptionPanel';
 import './base.less';
 
 class InjectApp extends Component {
@@ -15,17 +16,16 @@ class InjectApp extends Component {
 
   render() {
     return (
-      <div>
-        <button onClick={this.buttonOnClick}>
-          Open Todo
-        </button>
+      <div id="mulan">
+        <button onClick={this.buttonOnClick}>Open Todo</button>
         <Dock
+          className="ml-min-w-0"
           position="right"
           dimMode="transparent"
-          defaultSize={0.4}
-          isVisible={this.state.isVisible}
-        >
-          <h1 className="text-teal-500">Test</h1>
+          dockStyle={{ minWidth: '200px' }}
+          defaultSize={0.25}
+          isVisible={this.state.isVisible}>
+          <CaptionPanel />
         </Dock>
       </div>
     );
