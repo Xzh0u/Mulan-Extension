@@ -1,4 +1,4 @@
-chrome.storage.local.get('todos', (obj) => {
+chrome.storage.local.get('todos', obj => {
   let todos = obj.todos;
   if (todos) {
     todos = JSON.parse(todos);
@@ -8,6 +8,6 @@ chrome.storage.local.get('todos', (obj) => {
     }
   } else {
     // Initial
-    chrome.browserAction.setBadgeText({ text: '1' });
+    // chrome.browserAction.setBadgeText({ text: '1' });
   }
 });
