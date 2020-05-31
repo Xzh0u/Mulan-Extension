@@ -1,13 +1,13 @@
 import React from 'react';
 import Header from './Header';
-import Bottom from './Bottom';
 
-const CaptionPanel = () => {
-  return (
-    <div>
-      <Header className="ml-w-full ml-h-12 ml-bg-gray-300 ml-min-w-0" />
+const CaptionPanel = () => (
+  <div className="ml-flex ml-flex-col ml-h-full">
+    <Header className="ml-bg-gray-400 ml-h-14 ml-w-full ml-z-9999" />
+    <div className="ml-font-mono ml-text-lg ml-text-gray-800">
+      Here is subtitle
     </div>
-  );
-};
+  </div>
+);
 
 export default CaptionPanel;
