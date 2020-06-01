@@ -5,6 +5,7 @@ import './base.less';
 import { Drawer } from '@material-ui/core';
 import styled from 'styled-components';
 import ImagePanel from './containers/ImagePannel';
+import Notes from './components/Notes';
 
 const StyledDrawer = styled(Drawer)`
   ${({ containerstyle }) => `
@@ -34,7 +35,7 @@ const InjectApp = props => {
       className="ml-absolute ml-top-0 ml-h-full ml-w-full ml-invisible">
       <button
         onClick={buttonOnClick}
-        className="ml-absolute ml-top-0 ml-text-white ml-bg-teal-500 ml-z-9999 ml-visible">
+        className="ml-absolute  ml-right-0 ml-text-white ml-bg-teal-500 ml-z-9999 ml-visible">
         Open Todo
       </button>
       {domRef.current && (
