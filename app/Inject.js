@@ -4,6 +4,7 @@ import CaptionPanel from './containers/CaptionPanel';
 import './base.less';
 import { Drawer } from '@material-ui/core';
 import styled from 'styled-components';
+import ImagePanel from './containers/ImagePannel';
 
 const StyledDrawer = styled(Drawer)`
   ${({ containerstyle }) => `
@@ -57,7 +58,7 @@ const InjectApp = props => {
             height: 240px;
             top: auto;
             bottom: 0px;
-            visibility: visible;
+            visibility: invisible;
             position: fixed;
           `}
           className="ml-h-full"
@@ -68,7 +69,7 @@ const InjectApp = props => {
           }}
           open={isVisible}
           onClose={() => setVisible(false)}>
-          <div>Test</div>
+          <ImagePanel />
         </StyledDrawer>
       )}
     </div>
