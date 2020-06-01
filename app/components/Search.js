@@ -8,6 +8,11 @@ const whatToSearch = [{ title: 'Apple' }, { title: 'Boy' }];
 const StyledTextField = styled(TextField)`
   .MuiInputBase-root {
     border-radius: 20px;
+    background-color: #fffbfb;
+  }
+  .MuiOutlinedInput-notchedOutline {
+    border-width: 4px;
+    border-color: #d9d9d9;
   }
 `;
 
