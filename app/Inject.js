@@ -36,7 +36,7 @@ const InjectApp = props => {
         className="ml-absolute ml-top-0 ml-text-white ml-bg-teal-500 ml-z-9999 ml-visible">
         Open Todo
       </button>
-      {domRef && (
+      {domRef.current && (
         <StyledDrawer
           containerstyle={'width: 360px;'}
           className="ml-visible ml-z-9999"
@@ -50,7 +50,7 @@ const InjectApp = props => {
           <CaptionPanel />
         </StyledDrawer>
       )}
-      {domRef && (
+      {domRef.current && (
         <StyledDrawer
           containerstyle={`
             width: calc(100%  - 360px);
@@ -58,7 +58,7 @@ const InjectApp = props => {
             top: auto;
             bottom: 0px;
             visibility: visible;
-            position: absolute;
+            position: fixed;
           `}
           className="ml-h-full"
           anchor="left"
