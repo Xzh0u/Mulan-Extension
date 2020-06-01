@@ -296,6 +296,7 @@ module.exports = {
     inset: {
       0: '0',
       10: '10px',
+      '1/2': '50%',
       auto: 'auto',
       1: '100%',
     },
@@ -590,6 +591,7 @@ module.exports = {
       45: '45deg',
       90: '90deg',
       180: '180deg',
+      270: '270deg',
     },
     translate: (theme, { negative }) => ({
       ...theme('spacing'),
