@@ -69,6 +69,7 @@
     "@fortawesome/react-fontawesome": "^0.1.9",
     "@material-ui/core": "^4.9.14",
     "@material-ui/lab": "^4.0.0-alpha.54",
+    "antd": "^4.3.1",
     "autoprefixer": "^9.8.0",
     "bluebird": "^3.7.2",
     "classnames": "^2.2.6",
