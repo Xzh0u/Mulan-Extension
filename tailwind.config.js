@@ -239,6 +239,8 @@ module.exports = {
     },
     fontFamily: {
       sans: [
+        'Varela Round',
+        'Source Sans Pro',
         'system-ui',
         '-apple-system',
         'BlinkMacSystemFont',
@@ -296,6 +298,8 @@ module.exports = {
     inset: {
       0: '0',
       10: '10px',
+      25: '25px',
+      '1/2': '50%',
       auto: 'auto',
       1: '100%',
     },
@@ -443,7 +447,7 @@ module.exports = {
       '8/12': '66.666667%',
       '9/12': '75%',
       '10/12': '83.333333%',
-      '11/12': '91.666667%',
+      '11/12': '95%',
       240: '240px',
       full: '100%',
       screen: '100vw',
@@ -590,6 +594,7 @@ module.exports = {
       45: '45deg',
       90: '90deg',
       180: '180deg',
+      270: '270deg',
     },
     translate: (theme, { negative }) => ({
       ...theme('spacing'),
