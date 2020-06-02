@@ -5,7 +5,7 @@ import { IconButton } from '@material-ui/core';
 
 const Notes = () => (
   <IconButton>
-    <FontAwesomeIcon icon={faStickyNote} color="gray" size="lg" />
+    <FontAwesomeIcon icon={faStickyNote} color="gray" size="sm" />
   </IconButton>
 );
 

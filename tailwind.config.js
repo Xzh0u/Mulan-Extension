@@ -239,6 +239,8 @@ module.exports = {
     },
     fontFamily: {
       sans: [
+        'Varela Round',
+        'Source Sans Pro',
         'system-ui',
         '-apple-system',
         'BlinkMacSystemFont',
@@ -444,7 +446,7 @@ module.exports = {
       '8/12': '66.666667%',
       '9/12': '75%',
       '10/12': '83.333333%',
-      '11/12': '91.666667%',
+      '11/12': '95%',
       240: '240px',
       full: '100%',
       screen: '100vw',
