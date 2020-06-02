@@ -33,7 +33,7 @@ const InjectApp = props => {
     <div
       ref={domRef}
       className="ml-absolute ml-top-0 ml-h-full ml-w-full ml-invisible">
-      <OpenButton onClick={buttonOnClick} />
+      <OpenButton buttonOnClick={buttonOnClick} />
       {domRef.current && (
         <StyledDrawer
           containerstyle={'width: 360px;'}

@@ -5926,7 +5926,7 @@ promise@^7.0.1, promise@^7.1.1:
 
 prop-types@^15.5.4, prop-types@^15.5.8, prop-types@^15.6.2, prop-types@^15.7.2:
   version "15.7.2"
-  resolved "http://r.cnpmjs.org/prop-types/download/prop-types-15.7.2.tgz#52c41e75b8c87e72b9d9360e0206b99dcbffa6c5"
+  resolved "https://registry.npm.taobao.org/prop-types/download/prop-types-15.7.2.tgz#52c41e75b8c87e72b9d9360e0206b99dcbffa6c5"
   integrity sha1-UsQedbjIfnK52TYOAga5ncv/psU=
   dependencies:
     loose-envify "^1.4.0"
@@ -6183,6 +6183,11 @@ react-animation@^1.2.2:
   dependencies:
     react-transition-group "^2.7.0"
     regenerator-runtime "^0.13.1"
+
+react-animations@^1.0.0:
+  version "1.0.0"
+  resolved "https://registry.npm.taobao.org/react-animations/download/react-animations-1.0.0.tgz#d96222920dfeabec8984d9b2ef2c5a5aadb40f06"
+  integrity sha1-2WIikg3+q+yJhNmy7yxaWq20DwY=
 
 react-deep-force-update@^1.0.0:
   version "1.1.2"

@@ -11,10 +11,11 @@ const Header = ({ ...rest }) => (
     }
     {...rest}>
     <Search />
-    <IconButton className="ml-mx-2">
+    <IconButton className="ml-mx-2 ml-my-1">
       <FontAwesomeIcon icon={faHome} color="white" size="lg" />
     </IconButton>
     <Avatar
+      className="ml-my-1"
       alt="round"
       src="https://i.loli.net/2020/06/01/2uHvPFcdwAb3tRi.png"
     />
