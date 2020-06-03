@@ -21,15 +21,33 @@ const InjectApp = props => {
   const domRef = useRef(null);
   const [srcs, setSrcs] =  useState(["https://i.loli.net/2020/06/01/7Zn5NDfe8iLWtaB.png"]);
 
+  function base64toBlob(base64,type) {
+    // 将base64转为Unicode规则编码
+    let bstr = atob(base64, type);
+    let n = bstr.length;
+    let u8arr = new Uint8Array(n);
+    while (n--) {
+        u8arr[n] = bstr.charCodeAt(n) // 转换编码后才可以使用charCodeAt 找到Unicode编码
+    }
+    return new Blob([u8arr], {
+        type,
+    })
+  }
   const buttonOnClick = () => {
     setVisible(prev => !prev);
-
+    //get img url from back-end
     let  url="http://127.0.0.1:2333/login"
     axios.get(url)
       .then(function (response) {
-        let data =response.data
-        alert(data);
-        setSrcs(data)
+        let data64 =response.data.data //base64 format
+        let srcs = []
+        for(var i = 0, len = data64.length; i < len; i++){
+          console.log(data64[i])
+          let res = base64toBlob(data64[i], 'image/jpeg'); //blob format
+          let imgSrc = window.URL.createObjectURL(res); //url
+          srcs.push(imgSrc)
+        }
+        setSrcs(srcs)
       })
       .catch(function (error) {
         alert(error);
