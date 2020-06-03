@@ -6,6 +6,7 @@ import { Drawer } from '@material-ui/core';
 import styled from 'styled-components';
 import ImagePanel from './containers/ImagePannel';
 import Notes from './components/Notes';
+import axios from 'axios';
 
 const StyledDrawer = styled(Drawer)`
   ${({ containerstyle }) => `
@@ -16,11 +17,24 @@ const StyledDrawer = styled(Drawer)`
 `;
 
 const InjectApp = props => {
-  const [isVisible, setVisible] = useState(false);
+  const [isVisible, setVisible] = useState(true);
   const domRef = useRef(null);
+  const [srcs, setSrcs] =  useState(["https://i.loli.net/2020/06/01/7Zn5NDfe8iLWtaB.png"]);
 
   const buttonOnClick = () => {
     setVisible(prev => !prev);
+
+    let  url="http://127.0.0.1:2333/login"
+    axios.get(url)
+      .then(function (response) {
+        let data =response.data
+        alert(data);
+        setSrcs(data)
+      })
+      .catch(function (error) {
+        alert(error);
+        console.log(error);
+      });
   };
 
   useEffect(() => {
@@ -70,7 +84,7 @@ const InjectApp = props => {
           }}
           open={isVisible}
           onClose={() => setVisible(false)}>
-          <ImagePanel />
+          <ImagePanel srcs={srcs}/>
         </StyledDrawer>
       )}
     </div>
