@@ -1,15 +1,12 @@
 import React from 'react';
 import ImageCard from '../../components/ImageCard';
 
-
-const ImagePanel = (props) => (
+const ImagePanel = props => (
   <div className="ml-h-full ml-w-full ">
     <div className="ml-flex ml-flex-shrink-0 ml-visible ml-overflow-x-auto">
-      {
-          props.srcs.map((item, index) => (
-              <ImageCard key={index} src={item}/>
-          ))
-      }
+      {props.srcs.map((item, index) => (
+        <ImageCard key={index} src={item} />
+      ))}
     </div>
   </div>
 );
