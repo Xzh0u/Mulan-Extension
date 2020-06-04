@@ -8,11 +8,11 @@ const whatToSearch = [{ title: 'Apple' }, { title: 'Boy' }];
 const StyledTextField = styled(TextField)`
   .MuiInputBase-root {
     border-radius: 20px;
-    background-color: #fffbfb;
+    background-color: #edf2f7;
   }
   .MuiOutlinedInput-notchedOutline {
-    border-width: 4px;
-    border-color: #d9d9d9;
+    border-width: 3px;
+    border-color: #edf2f7;
   }
 `;
 
@@ -26,7 +26,7 @@ const Search = () => (
       renderInput={params => (
         <StyledTextField
           {...params}
-          className="ml-w-full"
+          className="ml-w-11-12 ml-my-2 "
           label="Search input"
           margin="none"
           variant="outlined"
