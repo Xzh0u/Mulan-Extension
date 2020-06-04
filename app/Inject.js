@@ -19,9 +19,7 @@ const StyledDrawer = styled(Drawer)`
 const InjectApp = (props) => {
   const [isVisible, setVisible] = useState(true);
   const domRef = useRef(null);
-  const [srcs, setSrcs] = useState([
-    'https://i.loli.net/2020/06/01/7Zn5NDfe8iLWtaB.png',
-  ]);
+  const [srcs, setSrcs] = useState([]);
 
   function base64toBlob(base64, type) {
     // 将base64转为Unicode规则编码
@@ -38,7 +36,8 @@ const InjectApp = (props) => {
   const buttonOnClick = () => {
     setVisible(prev => !prev);
     //get img url from back-end
-    axios
+    if (srcs.length === 0) { //only load once
+      axios
       .get('http://127.0.0.1:2333/login')
       .then((response) => {
         const data64 = response.data.data; //base64 format
@@ -54,6 +53,7 @@ const InjectApp = (props) => {
         alert(error);
         console.log(error);
       });
+    }
   };
 
   useEffect(() => {
