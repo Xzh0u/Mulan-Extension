@@ -9,14 +9,14 @@ const StyledCard = styled(Card)`
   }
 `;
 
-const ImageCard = () => (
+const ImageCard = (props) => (
   <StyledCard
     raised
     className="ml-flex-shrink-0 ml-min-w-0 ml-w-240 ml-h-44 ml-mx-4 ml-my-8">
     <CardMedia
       component="img"
       alt="ppt"
-      image="https://i.loli.net/2020/06/01/7Zn5NDfe8iLWtaB.png"
+      image={props.src}
     />
   </StyledCard>
 );
