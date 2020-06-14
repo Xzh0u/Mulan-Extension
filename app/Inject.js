@@ -19,11 +19,19 @@ const StyledDrawer = styled(Drawer)`
   `}
 `;
 
+
 const InjectApp = (props) => {
   const [isVisible, setVisible] = useState(true);
   const domRef = useRef(null);
   // const [srcs, setSrcs] = useState(['https://i.loli.net/2020/06/01/7Zn5NDfe8iLWtaB.png', 'https://i.loli.net/2020/06/01/7Zn5NDfe8iLWtaB.png', 'https://i.loli.net/2020/06/01/7Zn5NDfe8iLWtaB.png', 'https://i.loli.net/2020/06/01/7Zn5NDfe8iLWtaB.png', 'https://i.loli.net/2020/06/01/7Zn5NDfe8iLWtaB.png']);
   const [srcs, setSrcs] = useState([]);
+  const [curTime, setCurTime] = useState(0);
+  const cardOnClick = (time) => {
+    // alert(time);
+    setCurTime(time);
+    document.querySelector('video').currentTime = time;
+    document.querySelector('video').play();
+  };
 
   function base64toBlob(base64, type) {
     // 将base64转为Unicode规则编码
@@ -84,7 +92,7 @@ const InjectApp = (props) => {
           }}
           open={isVisible}
           onClose={() => setVisible(false)}>
-          <CaptionPanel />
+          <CaptionPanel curTime={curTime} />
         </StyledDrawer>
       )}
       {domRef.current && (
@@ -105,7 +113,7 @@ const InjectApp = (props) => {
           }}
           open={isVisible}
           onClose={() => setVisible(false)}>
-          <ImagePanel srcs={srcs} />
+          <ImagePanel srcs={srcs} onClick={i => cardOnClick(i)} />
         </StyledDrawer>
       )}
     </div>

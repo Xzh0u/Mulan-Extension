@@ -12,12 +12,6 @@ const StyledCard = styled(Card)`
   }
 `;
 
-const cardOnClick = (time) => {
-  // alert(time);
-  document.querySelector('video').currentTime = time;
-  document.querySelector('video').play();
-};
-
 const ImageCard = props => (
   <StyledCard
     raised
@@ -26,7 +20,7 @@ const ImageCard = props => (
       component="img"
       alt="ppt"
       image={props.src[0]}
-      onClick={() => cardOnClick(props.src[1])}
+      onClick={props.onClick}
     />
   </StyledCard>
 );
