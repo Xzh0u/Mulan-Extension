@@ -19,10 +19,19 @@ const StyledDrawer = styled(Drawer)`
   `}
 `;
 
+
 const InjectApp = (props) => {
   const [isVisible, setVisible] = useState(true);
   const domRef = useRef(null);
+  // const [srcs, setSrcs] = useState(['https://i.loli.net/2020/06/01/7Zn5NDfe8iLWtaB.png', 'https://i.loli.net/2020/06/01/7Zn5NDfe8iLWtaB.png', 'https://i.loli.net/2020/06/01/7Zn5NDfe8iLWtaB.png', 'https://i.loli.net/2020/06/01/7Zn5NDfe8iLWtaB.png', 'https://i.loli.net/2020/06/01/7Zn5NDfe8iLWtaB.png']);
   const [srcs, setSrcs] = useState([]);
+  const [curTime, setCurTime] = useState(0);
+  const cardOnClick = (time) => {
+    // alert(time);
+    setCurTime(time);
+    document.querySelector('video').currentTime = time;
+    document.querySelector('video').play();
+  };
 
   function base64toBlob(base64, type) {
     // 将base64转为Unicode规则编码
@@ -41,16 +50,18 @@ const InjectApp = (props) => {
     //get img url from back-end
     if (srcs.length === 0) { //only load once
       axios
-      .get('http://127.0.0.1:2333/login')
+      .get('http://127.0.0.1:2333/get_frames')
       .then((response) => {
-        const data64 = response.data.data; //base64 format
+        const img64 = response.data.imgs; //base64 format
+        const times = response.data.times;
         const imgSrcs = [];
-        for (let i = 0, len = data64.length; i < len; i++) {
-          const res = base64toBlob(data64[i], 'image/jpeg'); //blob format
+        for (let i = 0, len = img64.length; i < len; i++) {
+          const res = base64toBlob(img64[i], 'image/jpeg'); //blob format
           const imgSrc = window.URL.createObjectURL(res); //url
-          imgSrcs.push(imgSrc);
+          imgSrcs.push([imgSrc, times[i]]);
         }
         setSrcs(imgSrcs);
+        // setTimes(times);
       })
       .catch((error) => {
         alert(error);
@@ -81,14 +92,14 @@ const InjectApp = (props) => {
           }}
           open={isVisible}
           onClose={() => setVisible(false)}>
-          <CaptionPanel />
+          <CaptionPanel curTime={curTime} />
         </StyledDrawer>
       )}
       {domRef.current && (
         <StyledDrawer
           containerstyle={`
             width: calc(100%  - 360px);
-            height: 240px;
+            height: calc(30%);
             top: auto;
             bottom: 0px;
             visibility: invisible;
@@ -102,7 +113,7 @@ const InjectApp = (props) => {
           }}
           open={isVisible}
           onClose={() => setVisible(false)}>
-          <ImagePanel srcs={srcs} />
+          <ImagePanel srcs={srcs} onClick={i => cardOnClick(i)} />
         </StyledDrawer>
       )}
     </div>

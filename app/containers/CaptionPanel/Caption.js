@@ -1,8 +1,9 @@
 import React from 'react';
 
-const Caption = () => (
+const Caption = props => (
   <div className="ml-flex ml-flex-col ml-leading-relaxed ml-font-mono ml-text-base ml-text-gray-600 ml-mx-4 ml-my-5 ml-text-left ">
     <p className="ml-flex ml-overflow-y-auto">
+      {props.curTime}
       视频当前播放进度字幕，将加粗加下划线。这里是普通字幕。鼠标选中时字幕变为蓝色。
       如果文章中出现了学科名词，或者被用户右键选中标为重点词汇，则会显示黄色加粗高亮，如下句所示：
       拉格朗日乘数法是一种寻找多元函数在其变量受到一个或多个条件约束时的极值的方法。
