@@ -5,11 +5,10 @@ import './base.less';
 import { Drawer } from '@material-ui/core';
 import styled from 'styled-components';
 import ImagePanel from './containers/ImagePannel';
-import Notes from './components/Notes';
-import axios from 'axios';
+import { getImg } from './utils/getVideo';
+import { getCaption } from './utils/getCaption';
 
 import OpenButton from './components/OpenButton';
-
 
 const StyledDrawer = styled(Drawer)`
   ${({ containerstyle }) => `
@@ -19,54 +18,27 @@ const StyledDrawer = styled(Drawer)`
   `}
 `;
 
-
-const InjectApp = (props) => {
+const InjectApp = props => {
   const [isVisible, setVisible] = useState(true);
   const domRef = useRef(null);
   // const [srcs, setSrcs] = useState(['https://i.loli.net/2020/06/01/7Zn5NDfe8iLWtaB.png', 'https://i.loli.net/2020/06/01/7Zn5NDfe8iLWtaB.png', 'https://i.loli.net/2020/06/01/7Zn5NDfe8iLWtaB.png', 'https://i.loli.net/2020/06/01/7Zn5NDfe8iLWtaB.png', 'https://i.loli.net/2020/06/01/7Zn5NDfe8iLWtaB.png']);
   const [srcs, setSrcs] = useState([]);
   const [curTime, setCurTime] = useState(0);
-  const cardOnClick = (time) => {
+  const cardOnClick = time => {
     // alert(time);
     setCurTime(time);
     document.querySelector('video').currentTime = time;
     document.querySelector('video').play();
   };
 
-  function base64toBlob(base64, type) {
-    // 将base64转为Unicode规则编码
-    const bstr = atob(base64, type);
-    let n = bstr.length;
-    const u8arr = new Uint8Array(n);
-    while (n--) {
-      u8arr[n] = bstr.charCodeAt(n); // 转换编码后才可以使用charCodeAt 找到Unicode编码
-    }
-    return new Blob([u8arr], {
-      type,
-    });
-  }
-  const buttonOnClick = () => {
-    setVisible(prev => !prev);
+  const buttonOnClick = async () => {
+    await setVisible(prev => !prev);
+    const caption = await getCaption();
     //get img url from back-end
-    if (srcs.length === 0) { //only load once
-      axios
-      .get('http://127.0.0.1:2333/get_frames')
-      .then((response) => {
-        const img64 = response.data.imgs; //base64 format
-        const times = response.data.times;
-        const imgSrcs = [];
-        for (let i = 0, len = img64.length; i < len; i++) {
-          const res = base64toBlob(img64[i], 'image/jpeg'); //blob format
-          const imgSrc = window.URL.createObjectURL(res); //url
-          imgSrcs.push([imgSrc, times[i]]);
-        }
-        setSrcs(imgSrcs);
-        // setTimes(times);
-      })
-      .catch((error) => {
-        alert(error);
-        console.log(error);
-      });
+    if (srcs.length === 0) {
+      //only load once
+      const imgSrcs = await getImg();
+      setSrcs(imgSrcs);
     }
   };
 

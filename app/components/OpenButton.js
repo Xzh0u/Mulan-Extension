@@ -50,7 +50,7 @@ const OpenButton = props => {
 };
 
 OpenButton.propTypes = {
-  buttonOnClick: PropTypes.function,
+  buttonOnClick: PropTypes.func.isRequired,
 };
 
 export default OpenButton;
