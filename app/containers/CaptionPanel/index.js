@@ -7,7 +7,7 @@ import { checkPropTypes } from 'prop-types';
 const CaptionPanel = props => (
   <div className="ml-flex ml-flex-col ml-h-full">
     <Header />
-    <Caption curTime={props.curTime} />
+    <Caption curTime={props.curTime} caption={props.caption} />
     <Notes />
   </div>
 );

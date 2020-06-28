@@ -21,11 +21,10 @@ const StyledDrawer = styled(Drawer)`
 const InjectApp = props => {
   const [isVisible, setVisible] = useState(true);
   const domRef = useRef(null);
-  // const [srcs, setSrcs] = useState(['https://i.loli.net/2020/06/01/7Zn5NDfe8iLWtaB.png', 'https://i.loli.net/2020/06/01/7Zn5NDfe8iLWtaB.png', 'https://i.loli.net/2020/06/01/7Zn5NDfe8iLWtaB.png', 'https://i.loli.net/2020/06/01/7Zn5NDfe8iLWtaB.png', 'https://i.loli.net/2020/06/01/7Zn5NDfe8iLWtaB.png']);
   const [srcs, setSrcs] = useState([]);
   const [curTime, setCurTime] = useState(0);
+  const [caption, setCaption] = useState({});
   const cardOnClick = time => {
-    // alert(time);
     setCurTime(time);
     document.querySelector('video').currentTime = time;
     document.querySelector('video').play();
@@ -33,7 +32,8 @@ const InjectApp = props => {
 
   const buttonOnClick = async () => {
     await setVisible(prev => !prev);
-    const caption = await getCaption();
+    const captionData = await getCaption();
+    setCaption(captionData);
     //get img url from back-end
     if (srcs.length === 0) {
       //only load once
@@ -50,6 +50,7 @@ const InjectApp = props => {
 
   return (
     <div
+      id="mulan"
       ref={domRef}
       className="ml-absolute ml-top-0 ml-h-full ml-w-full ml-invisible">
       <OpenButton buttonOnClick={buttonOnClick} />
@@ -64,7 +65,7 @@ const InjectApp = props => {
           }}
           open={isVisible}
           onClose={() => setVisible(false)}>
-          <CaptionPanel curTime={curTime} />
+          <CaptionPanel curTime={curTime} caption={caption} />
         </StyledDrawer>
       )}
       {domRef.current && (
