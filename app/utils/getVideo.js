@@ -20,14 +20,12 @@ export async function getImg() {
     const img64 = response.data.image.imgs; //base64 format
     const times = response.data.image.times;
     const imgSrcs = [];
-    debugger;
     for (let i = 0, len = img64.length; i < len; i++) {
       const res = base64toBlob(img64[i], 'image/jpeg'); //blob format
 
       const imgSrc = window.URL.createObjectURL(res); //url
       imgSrcs.push([imgSrc, times[i]]);
     }
-    debugger;
     return imgSrcs;
   } catch (e) {
     alert(e);
