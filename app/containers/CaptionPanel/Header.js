@@ -4,13 +4,12 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faHome, faCog } from '@fortawesome/free-solid-svg-icons';
 import { IconButton, Avatar } from '@material-ui/core';
 
-const Header = ({ ...rest }) => (
+const Header = props => (
   <div
     className={
       'ml-shadow ml-flex ml-items-center ml-bg-white ml-w-full ml-z-9999 ml-px-4'
-    }
-    {...rest}>
-    <Search />
+    }>
+    <Search caption={props.caption} />
     <IconButton size="small" className="ml-m-1">
       <FontAwesomeIcon icon={faCog} color="gray" size="lg" />
     </IconButton>

@@ -3,7 +3,6 @@ import React from 'react';
 const Caption = props => (
   <div className="ml-flex ml-flex-col ml-leading-relaxed ml-font-mono ml-text-base ml-text-gray-600 ml-mx-4 ml-my-5 ml-text-left ">
     <p className="ml-overflow-y-auto ml-mb-64">
-      {/* {props.curTime} */}
       {(() => {
         if (props.caption && props.caption.context) {
           return props.caption.context.map((text, idx) => (
