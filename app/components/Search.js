@@ -3,8 +3,6 @@ import TextField from '@material-ui/core/TextField';
 import Autocomplete from '@material-ui/lab/Autocomplete';
 import styled from 'styled-components';
 
-const whatToSearch = [{ title: 'Apple' }, { title: 'Boy' }];
-
 const StyledTextField = styled(TextField)`
   .MuiInputBase-root {
     border-radius: 20px;
@@ -16,17 +14,21 @@ const StyledTextField = styled(TextField)`
   }
 `;
 
-const Search = () => (
+const Search = props => (
   <div className="ml-w-3-5">
     <Autocomplete
       className="ml-text-left"
       id="searchBar"
       freeSolo
-      options={whatToSearch.map(option => option.title)}
+      options={(() => {
+        if (props.caption && props.caption.context) {
+          return props.caption.context.map(context => context);
+        }
+      })()}
       renderInput={params => (
         <StyledTextField
           {...params}
-          className="ml-w-11-12 ml-my-2 "
+          className="ml-w-11-12 ml-my-2 ml-text-xs"
           label="Search input"
           margin="none"
           variant="outlined"
