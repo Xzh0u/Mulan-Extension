@@ -21,10 +21,16 @@ const StyledDrawer = styled(Drawer)`
 const InjectApp = props => {
   const [isVisible, setVisible] = useState(true);
   const domRef = useRef(null);
+  const videoRef = useRef(null);
   const [srcs, setSrcs] = useState([]);
   const [curTime, setCurTime] = useState(0);
   const [caption, setCaption] = useState({});
   const cardOnClick = time => {
+    setCurTime(time);
+    document.querySelector('video').currentTime = time;
+    document.querySelector('video').play();
+  };
+  const wordOnClick = time => {
     setCurTime(time);
     document.querySelector('video').currentTime = time;
     document.querySelector('video').play();
@@ -48,6 +54,13 @@ const InjectApp = props => {
     }
   }, [domRef]);
 
+  useEffect(() => {
+    if (document.querySelector('video').currentTime) {
+      setCurTime(document.querySelector('video').currentTime);
+      // console.log(document.querySelector('video').currentTime);
+    }
+  });
+
   return (
     <div
       id="mulan"
@@ -65,7 +78,11 @@ const InjectApp = props => {
           }}
           open={isVisible}
           onClose={() => setVisible(false)}>
-          <CaptionPanel curTime={curTime} caption={caption} />
+          <CaptionPanel
+            curTime={curTime}
+            caption={caption}
+            wordOnClick={wordOnClick}
+          />
         </StyledDrawer>
       )}
       {domRef.current && (
@@ -92,12 +109,10 @@ const InjectApp = props => {
     </div>
   );
 };
-// window.addEventListener('load', () => {
-// alert('load aaa');
+
 const injectDOM = document.createElement('div');
 injectDOM.className = 'mulan-root';
 injectDOM.id = 'mulan';
 injectDOM.style.textAlign = 'center';
 document.body.appendChild(injectDOM);
 render(<InjectApp />, injectDOM);
-// });
