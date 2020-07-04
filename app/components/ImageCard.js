@@ -13,16 +13,19 @@ const StyledCard = styled(Card)`
 `;
 
 const ImageCard = props => (
-  <StyledCard
-    raised
-    className="ml-flex-shrink-0 ml-bottom-0 ml-min-w-0 ml-w-240 ml-mx-4 ml-my-12">
-    <CardMedia
-      component="img"
-      alt="ppt"
-      image={props.src[0]}
-      onClick={props.onClick}
-    />
-  </StyledCard>
+  <Tooltip title={`Jump to ${Math.floor(props.src[1] / 60).toString().padStart(2, '0')}:${(props.src[1] % 60).toString().padStart(2, '0')}`} placement="top">
+    <StyledCard
+      raised
+      className="ml-flex-shrink-0 ml-bottom-0 ml-min-w-0 ml-w-240 ml-mx-4 ml-my-12">
+      <CardMedia
+        component="img"
+        alt="ppt"
+        image={props.src[0]}
+        onClick={props.onClick}
+      />
+    </StyledCard>
+  </Tooltip>
+
 );
 
 export default ImageCard;
