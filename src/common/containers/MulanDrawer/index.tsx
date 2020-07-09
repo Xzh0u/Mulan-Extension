@@ -1,6 +1,6 @@
 import React, { RefObject, useState } from 'react';
 import Drawer from '@src/common/components/Drawer';
-import Snapshot from '@src/common/components/Snapshot';
+import Snapshot from '@src/common/containers/MulanDrawer/Snapshot';
 
 interface Props {
   rootRef: RefObject<HTMLDivElement>;
@@ -11,7 +11,7 @@ const rightDrawerWidth = 360;
 const MulanDrawer: React.FC<Props> = ({ rootRef }) => {
   const [isDrawerOpen, setDrawerOpen] = useState(false);
 
-  const url = 'www.baidu.com/img/PCtm_d9c8750bed0b3c7d089fa7d55720d6cf.png';
+  const url = 'https://www.baidu.com/img/PCtm_d9c8750bed0b3c7d089fa7d55720d6cf.png';
 
   const fakeData = [
     { url, time: 0 },

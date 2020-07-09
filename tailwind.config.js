@@ -14,10 +14,10 @@ module.exports = {
       colors: {
         transparent: 'transparent',
         current: 'currentColor',
-  
+
         black: '#000',
         white: '#fff',
-  
+
         gray: {
           100: '#f5f5f5',
           200: '#edf2f7',
@@ -448,7 +448,6 @@ module.exports = {
         '9/12': '75%',
         '10/12': '83.333333%',
         '11/12': '95%',
-        240: '240px',
         full: '100%',
         screen: '100vw',
       }),
@@ -752,4 +751,3 @@ module.exports = {
     corePlugins: {},
     plugins: [],
   };
-  

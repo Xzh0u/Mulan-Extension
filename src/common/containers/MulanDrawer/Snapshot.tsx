@@ -28,7 +28,7 @@ const ImageCard: React.FC<Props> = ({ url, time }) => {
       placement="top">
       <StyledCard
         raised
-        className="ml-flex-shrink-0 ml-bottom-0 ml-min-w-0 ml-w-240 ml-mx-4 ml-my-12">
+        className="ml-flex-shrink-0 ml-bottom-0 ml-w-64 ml-h-44 ml-mx-4 ml-my-8">
         <CardMedia
           component="img"
           alt="ppt"
