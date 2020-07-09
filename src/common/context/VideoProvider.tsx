@@ -1,14 +1,14 @@
 import React, { createContext, useReducer, Dispatch, RefObject } from 'react';
 
 const initialVideoContext = {
-  rootRef: undefined as unknown as RefObject<HTMLDivElement>,
+  rootRef: (undefined as unknown) as RefObject<HTMLDivElement>,
   video: {
     curTime: 0,
     captions: {
-      context: [] as string[],
-      startTime: [] as number[],
-      endTime: [] as number[],
-    },
+      context: [],
+      startTime: [],
+      endTime: [],
+    } as CaptionType,
   },
   dispatch: (undefined as unknown) as Dispatch<ActionType>,
   status: { status: 'empty' } as Status,
@@ -24,9 +24,9 @@ const reducer = (state: VideoContextType, action: ActionType) => {
         ...state,
         video: {
           ...state.video,
-          curTime: action.payload.time
-        }
-      }
+          curTime: action.payload.time,
+        },
+      };
     default:
       return state;
   }
@@ -50,6 +50,12 @@ type Status =
 type ActionType =
   | { type: 'test'; payload: { test: string } }
   | { type: 'setTime'; payload: { time: number } };
+
+export interface CaptionType {
+  context: string[];
+  startTime: number[];
+  endTime: number[];
+}
 
 export type VideoContextType = typeof initialVideoContext;
 
