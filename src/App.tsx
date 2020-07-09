@@ -1,9 +1,10 @@
 import React from 'react';
+import Test from '@src/common/containers/Test';
 
 function App() {
   return (
     <div className="App">
-      empty
+      <Test />
     </div>
   );
 }

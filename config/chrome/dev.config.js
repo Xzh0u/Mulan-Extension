@@ -94,7 +94,7 @@ const baseDevConfig = (webpackEnv) => {
           },
         },
         {
-          test: /\.less$/,
+          test: /\.scss$/,
           use: [
             "style-loader",
             "css-loader?modules&sourceMap&importLoaders=1&localIdentName=[local]",
