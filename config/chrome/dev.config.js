@@ -1,31 +1,30 @@
-const path = require("path");
-const webpack = require("webpack");
+const path = require('path');
+const webpack = require('webpack');
 
-const host = "localhost";
+const host = 'localhost';
 const port = 3000;
-const customPath = path.join(__dirname, "./customPublicPath");
+const customPath = path.join(__dirname, './customPublicPath');
 const hotScript =
-  "webpack-hot-middleware/client?path=__webpack_hmr&dynamicPublicPath=true";
+  'webpack-hot-middleware/client?path=__webpack_hmr&dynamicPublicPath=true';
 
-const workingDir = path.resolve(__dirname, "../../");
+const workingDir = path.resolve(__dirname, '../../');
 const chromeSrcDir = path.join(workingDir, './src/chrome');
 const chromeDevDir = path.join(workingDir, './chromedev');
 
-const baseDevConfig = (webpackEnv) => {
-  
+const baseDevConfig = webpackEnv => {
   return {
-    mode: "development",
-    devtool: "inline-source-map",
+    mode: 'development',
+    devtool: 'inline-source-map',
     entry: {
       popup: [
         customPath,
         hotScript,
-        path.join(chromeSrcDir, "./popup/index.tsx"),
+        path.join(chromeSrcDir, './popup/index.tsx'),
       ],
       background: [
         customPath,
         hotScript,
-        path.join(workingDir, "./chrome/extension/background"),
+        path.join(workingDir, './chrome/extension/background'),
       ],
     },
     devMiddleware: {
@@ -34,15 +33,15 @@ const baseDevConfig = (webpackEnv) => {
         colors: true,
       },
       noInfo: true,
-      headers: { "Access-Control-Allow-Origin": "*" },
+      headers: { 'Access-Control-Allow-Origin': '*' },
     },
     hotMiddleware: {
-      path: "/js/__webpack_hmr",
+      path: '/js/__webpack_hmr',
     },
     output: {
-      path: path.join(chromeDevDir, "./js"),
-      filename: "[name].bundle.js",
-      chunkFilename: "[id].chunk.js",
+      path: path.join(chromeDevDir, './js'),
+      filename: '[name].bundle.js',
+      chunkFilename: '[id].chunk.js',
     },
     plugins: [
       new webpack.HotModuleReplacementPlugin(),
@@ -51,13 +50,16 @@ const baseDevConfig = (webpackEnv) => {
       new webpack.DefinePlugin({
         __HOST__: `'${host}'`,
         __PORT__: port,
-        "process.env": {
-          NODE_ENV: JSON.stringify("development"),
+        'process.env': {
+          NODE_ENV: JSON.stringify('development'),
         },
       }),
     ],
     resolve: {
-      extensions: ["*", ".js", ".jsx", ".ts", ".tsx"],
+      extensions: ['*', '.js', '.jsx', '.ts', '.tsx'],
+      alias: {
+        '@src': path.resolve(__dirname, '../../src'),
+      },
     },
     module: {
       rules: [
@@ -66,19 +68,19 @@ const baseDevConfig = (webpackEnv) => {
         {
           test: /\.(js|mjs|jsx|ts|tsx)$/,
           include: workingDir,
-          loader: require.resolve("babel-loader"),
+          loader: require.resolve('babel-loader'),
           options: {
             customize: require.resolve(
-              "babel-preset-react-app/webpack-overrides"
+              'babel-preset-react-app/webpack-overrides',
             ),
             plugins: [
               [
-                require.resolve("babel-plugin-named-asset-import"),
+                require.resolve('babel-plugin-named-asset-import'),
                 {
                   loaderMap: {
                     svg: {
                       ReactComponent:
-                        "@svgr/webpack?-svgo,+titleProp,+ref![path]",
+                        '@svgr/webpack?-svgo,+titleProp,+ref![path]',
                     },
                   },
                 },
@@ -96,15 +98,31 @@ const baseDevConfig = (webpackEnv) => {
         {
           test: /\.scss$/,
           use: [
-            "style-loader",
-            "css-loader?modules&sourceMap&importLoaders=1&localIdentName=[local]",
+            'style-loader',
             {
-              loader: "postcss-loader",
+              loader: 'css-loader?modules&sourceMap&importLoaders=1&localIdentName=[local]',
               options: {
-                ident: "postcss",
-                plugins: [require("tailwindcss"), require("autoprefixer")],
+                importLoaders: 3,
+                sourceMap: true,
               },
             },
+            {
+              loader: 'postcss-loader',
+              options: {
+                ident: 'postcss',
+                plugins: [
+                  require('tailwindcss'),
+                  require('postcss-flexbugs-fixes'),
+                  require('postcss-preset-env')({
+                    autoprefixer: {
+                      flexbox: 'no-2009',
+                    },
+                    stage: 3,
+                  }),
+                ],
+              },
+            },
+            'sass-loader',
           ],
         },
       ],
@@ -115,14 +133,14 @@ const baseDevConfig = (webpackEnv) => {
 const injectPageConfig = baseDevConfig();
 injectPageConfig.entry = [
   customPath,
-  path.join(chromeSrcDir, "./inject/index.tsx"),
+  path.join(chromeSrcDir, './inject/index.tsx'),
 ];
 delete injectPageConfig.hotMiddleware;
 delete injectPageConfig.module.rules[0].options;
 injectPageConfig.plugins.shift(); // remove HotModuleReplacementPlugin
 injectPageConfig.output = {
-  path: path.join(chromeDevDir, "./js"),
-  filename: "inject.bundle.js",
+  path: path.join(chromeDevDir, './js'),
+  filename: 'inject.bundle.js',
 };
 const appConfig = baseDevConfig();
 

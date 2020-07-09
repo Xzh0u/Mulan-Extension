@@ -1,8 +1,19 @@
-import React from "react";
+import React, { useRef } from 'react';
 import { render } from 'react-dom';
+import VideoProvider from '@src/common/context/VideoProvider';
+import MulanDrawer from '@src/common/containers/MulanDrawer';
+import '@src/index.scss';
 
 const Inject: React.FC = () => {
-  return (<div>Inejct</div>);
+  const rootRef = useRef(null);
+
+  return (
+    <VideoProvider>
+      <div ref={rootRef}>
+        <MulanDrawer keep={false} rootRef={rootRef} />
+      </div>
+    </VideoProvider>
+  );
 };
 
 const injectDOM = document.createElement('div');

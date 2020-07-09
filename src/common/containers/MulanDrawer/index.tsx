@@ -1,6 +1,7 @@
 import React, { RefObject, useState } from 'react';
 import Drawer from '@src/common/components/Drawer';
 import Snapshot from '@src/common/containers/MulanDrawer/Snapshot';
+import { useVideoListener } from '@src/common/hooks/useVideoListener';
 
 interface Props {
   rootRef: RefObject<HTMLDivElement>;
@@ -11,6 +12,8 @@ const rightDrawerWidth = 360;
 
 const MulanDrawer: React.FC<Props> = ({ keep, rootRef }) => {
   const [isDrawerOpen, setDrawerOpen] = useState(true);
+
+  useVideoListener();
 
   const url =
     'https://www.baidu.com/img/PCtm_d9c8750bed0b3c7d089fa7d55720d6cf.png';
@@ -66,7 +69,7 @@ const MulanDrawer: React.FC<Props> = ({ keep, rootRef }) => {
         }}
         open={isDrawerOpen}
         onClose={() => setDrawerOpen(false)}>
-          <Snapshot snapshots={fakeData} />
+        <Snapshot snapshots={fakeData} />
       </Drawer>
     </div>
   );
