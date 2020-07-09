@@ -9,7 +9,15 @@ const Player: React.FC = () => {
   return (
     <VideoProvider>
       <div ref={rootRef}>
-        Player
+        <video
+          controls={true}
+          style={{ width: `calc(100% - 500px)`, height: `calc(100% - 500px)` }}
+          className="ml-ml-16 ml-mt-8">
+          <source
+            src="http://clips.vorwaerts-gmbh.de/VfE_html5.mp4"
+            type="video/mp4"
+          />
+        </video>
         <MulanDrawer keep={true} rootRef={rootRef} />
       </div>
     </VideoProvider>

@@ -1,6 +1,6 @@
-import React, { useContext } from 'react';
-import { CardMedia, Tooltip, Card } from '@material-ui/core';
+import React, { useContext, memo } from 'react';
 import styled from 'styled-components';
+import { CardMedia, Tooltip, Card } from '@material-ui/core';
 import { videoContext } from '@src/common/context/VideoProvider';
 
 const StyledCard = styled(Card)`
@@ -12,12 +12,12 @@ const StyledCard = styled(Card)`
   }
 `;
 
-interface Props {
+export interface SnapshotInfoProps {
   url: string;
   time: number;
 }
 
-const ImageCard: React.FC<Props> = ({ url, time }) => {
+const SnapshotInfo: React.FC<SnapshotInfoProps> = ({ time, url }) => {
   const { dispatch } = useContext(videoContext);
 
   return (
@@ -40,4 +40,4 @@ const ImageCard: React.FC<Props> = ({ url, time }) => {
   );
 };
 
-export default ImageCard;
+export default memo(SnapshotInfo);

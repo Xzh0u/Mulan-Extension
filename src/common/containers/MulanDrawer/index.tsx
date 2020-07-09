@@ -66,13 +66,7 @@ const MulanDrawer: React.FC<Props> = ({ keep, rootRef }) => {
         }}
         open={isDrawerOpen}
         onClose={() => setDrawerOpen(false)}>
-        <div className="ml-h-full ml-w-full ">
-          <div className="ml-flex ml-flex-shrink-0 ml-visible ml-overflow-x-auto">
-            {fakeData.map(({ url, time }, idx) => {
-              return <Snapshot key={idx} url={url} time={time} />;
-            })}
-          </div>
-        </div>
+          <Snapshot snapshots={fakeData} />
       </Drawer>
     </div>
   );
