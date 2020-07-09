@@ -15,7 +15,7 @@ export function useVideoListener() {
   });
 
   useEffect(() => {
-    const func = (event: any) => {
+    const func = async (event: any) => {
       dispatch({
         type: 'setTime',
         payload: { time: event.target!.currentTime },
