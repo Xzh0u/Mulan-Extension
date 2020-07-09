@@ -4,14 +4,16 @@ import Snapshot from '@src/common/containers/MulanDrawer/Snapshot';
 
 interface Props {
   rootRef: RefObject<HTMLDivElement>;
+  keep: boolean;
 }
 
 const rightDrawerWidth = 360;
 
-const MulanDrawer: React.FC<Props> = ({ rootRef }) => {
-  const [isDrawerOpen, setDrawerOpen] = useState(false);
+const MulanDrawer: React.FC<Props> = ({ keep, rootRef }) => {
+  const [isDrawerOpen, setDrawerOpen] = useState(true);
 
-  const url = 'https://www.baidu.com/img/PCtm_d9c8750bed0b3c7d089fa7d55720d6cf.png';
+  const url =
+    'https://www.baidu.com/img/PCtm_d9c8750bed0b3c7d089fa7d55720d6cf.png';
 
   const fakeData = [
     { url, time: 0 },
@@ -24,7 +26,18 @@ const MulanDrawer: React.FC<Props> = ({ rootRef }) => {
   return (
     <div className="ml-absolute ml-top-0 ml-h-full ml-w-full ml-invisible">
       <div className="ml-absolute ml-visible ml-left-1/2">
-        <button onClick={() => setDrawerOpen(!isDrawerOpen)}>toggle</button>
+        <button
+          onClick={() => {
+            if (isDrawerOpen) {
+              if (!keep) {
+                setDrawerOpen(!isDrawerOpen);
+              }
+              return;
+            }
+            setDrawerOpen(!isDrawerOpen);
+          }}>
+          toggle
+        </button>
       </div>
       <Drawer
         containerstyle={`width: ${rightDrawerWidth}px;`}

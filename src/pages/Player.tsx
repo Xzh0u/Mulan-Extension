@@ -10,7 +10,7 @@ const Player: React.FC = () => {
     <VideoProvider>
       <div ref={rootRef}>
         Player
-        <MulanDrawer rootRef={rootRef} />
+        <MulanDrawer keep={true} rootRef={rootRef} />
       </div>
     </VideoProvider>
   );
