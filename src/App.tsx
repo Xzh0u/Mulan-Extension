@@ -1,11 +1,24 @@
 import React from 'react';
-import Test from '@src/common/containers/Test';
+import {
+  Switch, Route, Redirect, BrowserRouter
+} from 'react-router-dom';
+import { Helmet } from 'react-helmet';
+import Home from './pages/Home';
+import Player from './pages/Player';
 
 function App() {
   return (
-    <div className="App">
-      <Test />
-    </div>
+    <BrowserRouter>
+      <Helmet>
+        <title>Mulan - video helper</title>
+      </Helmet>
+      <Switch>
+        <Route path="/home" component={Home} />
+        {/* TODO: /player */}
+        <Route path="*" component={Player} />
+        <Redirect to="/404">404</Redirect>
+      </Switch>
+    </BrowserRouter>
   );
 }
 
