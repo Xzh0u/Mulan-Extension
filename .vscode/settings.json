@@ -57,7 +57,7 @@
   "prettier.tabWidth": 2,
   "prettier.singleQuote": true,
   "prettier.prettierPath": "",
-  "[javascript, javascriptreact]": {
+  "[javascript, javascriptreact, typescript, typescriptreact]": {
     "editor.defaultFormatter": "esbenp.prettier-vscode",
     "editor.formatOnSave": true
   },

@@ -153,6 +153,7 @@
   "devDependencies": {
     "@types/react-helmet": "^6.0.0",
     "@types/react-router-dom": "^5.1.5",
+    "@types/styled-components": "^5.1.1",
     "minimist": "^1.2.5",
     "node-sass": "^4.14.1",
     "pug-cli": "^1.0.0-alpha6",

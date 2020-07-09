@@ -1,7 +1,7 @@
-import React, { createContext, useReducer, Dispatch } from 'react';
+import React, { createContext, useReducer, Dispatch, RefObject } from 'react';
 
 const initialVideoContext = {
-  rootRef: undefined,
+  rootRef: undefined as unknown as RefObject<HTMLDivElement>,
   video: {
     curTime: 0,
     captions: {
@@ -14,10 +14,19 @@ const initialVideoContext = {
   status: { status: 'empty' } as Status,
 };
 
-const VideoContext = createContext(initialVideoContext);
+export const videoContext = createContext(initialVideoContext);
 
 const reducer = (state: VideoContextType, action: ActionType) => {
+  debugger;
   switch (action.type) {
+    case 'setTime':
+      return {
+        ...state,
+        video: {
+          ...state.video,
+          curTime: action.payload.time
+        }
+      }
     default:
       return state;
   }
@@ -26,9 +35,9 @@ const reducer = (state: VideoContextType, action: ActionType) => {
 const VideoProvider: React.FC = ({ children }) => {
   const [state, dispatch] = useReducer(reducer, initialVideoContext);
   return (
-    <VideoContext.Provider value={{ ...state, dispatch }}>
+    <videoContext.Provider value={{ ...state, dispatch }}>
       {children}
-    </VideoContext.Provider>
+    </videoContext.Provider>
   );
 };
 
@@ -38,7 +47,9 @@ type Status =
   | { status: 'error'; error: string }
   | { status: 'success'; data: any };
 
-type ActionType = { type: 'test'; payload: any };
+type ActionType =
+  | { type: 'test'; payload: { test: string } }
+  | { type: 'setTime'; payload: { time: number } };
 
 export type VideoContextType = typeof initialVideoContext;
 
