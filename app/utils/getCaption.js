@@ -1,9 +1,12 @@
 import axios from 'axios';
-export async function getCaption() {
+export async function getCaption(url) {
   try {
-    const response = await axios.get(
-      'http://127.0.0.1:5000/caption/get_caption',
+    const response = await axios.post(
+      `http://127.0.0.1:5000/video/get_caption?url=${url}`,
     );
+    // const response = await axios.post(
+    //   'http://127.0.0.1:5000/video/get_caption?url=https://www.bilibili.com/video/BV1H4411N7oD?p=5',
+    // );
     const context = response.data.context;
     const startTime = response.data.start_time;
     const endTime = response.data.end_time;

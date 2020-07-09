@@ -7,6 +7,7 @@ import styled from 'styled-components';
 import ImagePanel from './containers/ImagePannel';
 import { getImg } from './utils/getVideo';
 import { getCaption } from './utils/getCaption';
+import { download } from './utils/downloadVideo';
 
 import OpenButton from './components/OpenButton';
 
@@ -18,32 +19,40 @@ const StyledDrawer = styled(Drawer)`
   `}
 `;
 
-const InjectApp = props => {
+const InjectApp = (props) => {
   const [isVisible, setVisible] = useState(true);
   const domRef = useRef(null);
   const videoRef = useRef(null);
   const [srcs, setSrcs] = useState([]);
   const [curTime, setCurTime] = useState(0);
   const [caption, setCaption] = useState({});
-  const cardOnClick = time => {
+  const cardOnClick = (time) => {
     setCurTime(time);
     document.querySelector('video').currentTime = time;
     document.querySelector('video').play();
   };
-  const wordOnClick = time => {
+  const wordOnClick = (time) => {
     setCurTime(time);
     document.querySelector('video').currentTime = time;
     document.querySelector('video').play();
   };
-
+  const getURL = () => {
+    // chrome.tabs.query({ active: true, lastFocusedWindow: true }, tabs => {
+    //   const url = tabs[0].url;
+    //   return url;
+    // });
+    // chrome.tabs.getCurrent(tab => tab.id);
+  };
   const buttonOnClick = async () => {
+    await download(window.location.href);
     await setVisible(prev => !prev);
-    const captionData = await getCaption();
+    const captionData = await getCaption(window.location.href);
+    debugger;
     setCaption(captionData);
     //get img url from back-end
     if (srcs.length === 0) {
       //only load once
-      const imgSrcs = await getImg();
+      const imgSrcs = await getImg(window.location.href);
       setSrcs(imgSrcs);
     }
   };

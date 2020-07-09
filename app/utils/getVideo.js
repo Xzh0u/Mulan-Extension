@@ -14,9 +14,14 @@ function base64toBlob(base64, type) {
   });
 }
 
-export async function getImg() {
+export async function getImg(url) {
   try {
-    const response = await axios.get('http://127.0.0.1:5000/video/manager');
+    const response = await axios.post(
+      `http://127.0.0.1:5000/video/get_image?url=${url}`,
+    );
+    // const response = await axios.post(
+    //   'http://127.0.0.1:5000/video/get_image?url=https://www.bilibili.com/video/BV1H4411N7oD?p=5',
+    // );
     const img64 = response.data.image.imgs; //base64 format
     const times = response.data.image.times;
     const imgSrcs = [];
