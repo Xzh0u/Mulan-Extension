@@ -6,7 +6,6 @@ import MulanDrawer from '@src/common/containers/MulanDrawer';
 const Player: React.FC = () => {
   const rootRef = useRef(null);
 
-
   return (
     <VideoProvider>
       <div ref={rootRef}>

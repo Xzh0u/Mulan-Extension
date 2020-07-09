@@ -2,6 +2,7 @@ import React, { RefObject, useState } from 'react';
 import Drawer from '@src/common/components/Drawer';
 import Snapshot from '@src/common/containers/MulanDrawer/Snapshot';
 import { useVideoListener } from '@src/common/hooks/useVideoListener';
+import CaptionDrawer from './CaptionDrawer';
 
 interface Props {
   rootRef: RefObject<HTMLDivElement>;
@@ -51,7 +52,7 @@ const MulanDrawer: React.FC<Props> = ({ keep, rootRef }) => {
         }}
         open={isDrawerOpen}
         onClose={() => setDrawerOpen(false)}>
-        <div>test</div>
+        <CaptionDrawer />
       </Drawer>
       <Drawer
         className="ml-h-full"
