@@ -1,44 +1,44 @@
-# Mulan Extension
+This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
-## Tools
+## Available Scripts
 
-### install commition
-After install commitizen, we use `git cz` instead of `git commit`, which can make us commit in a clean and identical standard.
+In the project directory, you can run:
 
-```bash
-$ npm install -g commitizen
-```
-## Run the project
-### Install
-This method can add node_modules to the project.
+### `yarn start`
 
-```bash
-$ yarn install
-```
+Runs the app in the development mode.<br />
+Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
 
-### Development
+The page will reload if you make edits.<br />
+You will also see any lint errors in the console.
 
-- Run script
+### `yarn test`
 
-```bash
-# build files to './dev'
-# start webpack development server
-$ yarn dev
-```
-#### React/Redux hot reload
+Launches the test runner in the interactive watch mode.<br />
+See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
 
-This project uses `Webpack` and `react-transform`, and use `Redux`. You can hot reload by editing related files of Popup & Window & Inject page.
+### `yarn build`
 
-First we enter [chrome://extensions](chrome://extensions) in chrome browser, open the develop mode, load the unziped project folder, then our chrome extension will emerge. Our extension is only available on the github page according to the present  config(we can change it to other websites later), we can test it on any url begin with https://github.com/.
+Builds the app for production to the `build` folder.<br />
+It correctly bundles React in production mode and optimizes the build for the best performance.
 
-### Build
+The build is minified and the filenames include the hashes.<br />
+Your app is ready to be deployed!
 
-```bash
-# build files to './build'
-$ yarn build
-```
-## Development
+See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
 
-## LICENSE
+### `yarn eject`
 
-[MIT](LICENSE)
+**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+
+If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+
+Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+
+You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+
+## Learn More
+
+You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+
+To learn React, check out the [React documentation](https://reactjs.org/).
