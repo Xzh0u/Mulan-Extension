@@ -1,9 +1,10 @@
-import React, { RefObject, useState } from 'react';
+import React, { RefObject, useState, useContext } from 'react';
 import Drawer from '@src/common/components/Drawer';
 import Snapshot from '@src/common/containers/MulanDrawer/Snapshot';
 import { useVideoListener } from '@src/common/hooks/useVideoListener';
 import CaptionDrawer from './CaptionDrawer';
 import OpenButton from '@src/common/components/OpenButton';
+import { videoContext } from '@src/common/context/VideoProvider';
 
 interface Props {
   rootRef: RefObject<HTMLDivElement>;
@@ -13,20 +14,10 @@ interface Props {
 const rightDrawerWidth = 360;
 
 const MulanDrawer: React.FC<Props> = ({ keep, rootRef }) => {
-  const [isDrawerOpen, setDrawerOpen] = useState(true);
-
+  const [isDrawerOpen, setDrawerOpen] = useState(false);
+  const { video } = useContext(videoContext);
+  const { imgs } = video;
   useVideoListener();
-
-  const url =
-    'https://www.baidu.com/img/PCtm_d9c8750bed0b3c7d089fa7d55720d6cf.png';
-
-  const fakeData = [
-    { url, time: 0 },
-    { url, time: 0 },
-    { url, time: 0 },
-    { url, time: 0 },
-    { url, time: 0 },
-  ];
 
   return (
     <div className="ml-absolute ml-top-0 ml-h-full ml-w-full ml-invisible">
@@ -71,7 +62,7 @@ const MulanDrawer: React.FC<Props> = ({ keep, rootRef }) => {
         }}
         open={isDrawerOpen}
         onClose={() => setDrawerOpen(false)}>
-        <Snapshot snapshots={fakeData} />
+        <Snapshot snapshots={imgs} />
       </Drawer>
     </div>
   );
