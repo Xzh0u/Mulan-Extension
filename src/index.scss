@@ -1,6 +1,7 @@
+@import 'tailwindcss/components';
 
-@import "tailwindcss/components";
+@import 'tailwindcss/utilities';
 
-@import "tailwindcss/utilities";
-
-@import "tailwindcss/base";
+#mulan_DWAfawfwardzarf  {
+  @import './normalize.scss';
+}
