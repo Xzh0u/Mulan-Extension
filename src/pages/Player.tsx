@@ -18,7 +18,7 @@ const Player: React.FC = () => {
             type="video/mp4"
           />
         </video>
-        <MulanDrawer keep={true} rootRef={rootRef} />
+        <MulanDrawer isExtension={false} keep={true} rootRef={rootRef} />
       </div>
     </VideoProvider>
   );
