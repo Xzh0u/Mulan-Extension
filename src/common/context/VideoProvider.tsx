@@ -9,6 +9,7 @@ const initialVideoContext = {
       startTime: [],
       endTime: [],
     } as CaptionType,
+    imgs: [] as ImageType[],
   },
   dispatch: (undefined as unknown) as Dispatch<ActionType>,
   status: { status: 'empty' } as Status,
@@ -25,6 +26,22 @@ const reducer = (state: VideoContextType, action: ActionType) => {
         video: {
           ...state.video,
           curTime: action.payload.time,
+        },
+      };
+    case 'setImgs':
+      return {
+        ...state,
+        video: {
+          ...state.video,
+          imgs: action.payload.imgs,
+        },
+      };
+    case 'setCaptions':
+      return {
+        ...state,
+        video: {
+          ...state.video,
+          captions: action.payload.captions,
         },
       };
     default:
@@ -49,12 +66,19 @@ type Status =
 
 type ActionType =
   | { type: 'test'; payload: { test: string } }
-  | { type: 'setTime'; payload: { time: number } };
+  | { type: 'setTime'; payload: { time: number } }
+  | { type: 'setImgs'; payload: { imgs: ImageType[] } }
+  | { type: 'setCaptions'; payload: { captions: CaptionType } };
 
 export interface CaptionType {
   context: string[];
   startTime: number[];
   endTime: number[];
+}
+
+export interface ImageType {
+  url: string;
+  time: number;
 }
 
 export type VideoContextType = typeof initialVideoContext;

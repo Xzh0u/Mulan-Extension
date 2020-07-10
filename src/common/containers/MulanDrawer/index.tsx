@@ -3,6 +3,7 @@ import Drawer from '@src/common/components/Drawer';
 import Snapshot from '@src/common/containers/MulanDrawer/Snapshot';
 import { useVideoListener } from '@src/common/hooks/useVideoListener';
 import CaptionDrawer from './CaptionDrawer';
+import OpenButton from '@src/common/components/OpenButton';
 
 interface Props {
   rootRef: RefObject<HTMLDivElement>;
@@ -29,9 +30,9 @@ const MulanDrawer: React.FC<Props> = ({ keep, rootRef }) => {
 
   return (
     <div className="ml-absolute ml-top-0 ml-h-full ml-w-full ml-invisible">
-      <div className="ml-absolute ml-visible ml-left-1/2">
-        <button
-          onClick={() => {
+      {!keep && (
+        <OpenButton
+          buttonOnClick={() => {
             if (isDrawerOpen) {
               if (!keep) {
                 setDrawerOpen(!isDrawerOpen);
@@ -41,8 +42,8 @@ const MulanDrawer: React.FC<Props> = ({ keep, rootRef }) => {
             setDrawerOpen(!isDrawerOpen);
           }}>
           toggle
-        </button>
-      </div>
+        </OpenButton>
+      )}
       <Drawer
         containerstyle={`width: ${rightDrawerWidth}px;`}
         className="ml-visible ml-z-9999"
