@@ -29,7 +29,7 @@ const Search: React.FC = () => {
         renderInput={params => (
           <StyledTextField
             {...params}
-            className="ml-w-11-12 ml-my-2 ml-text-base"
+            className="ml-w-11-12 ml-my-2 ml-text-xs"
             label="Search input"
             margin="none"
             variant="outlined"

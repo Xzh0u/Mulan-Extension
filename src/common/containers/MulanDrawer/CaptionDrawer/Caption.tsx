@@ -19,8 +19,9 @@ const Caption: React.FC = () => {
   const { video, dispatch } = useContext(videoContext);
   const { curTime, captions } = video;
   return (
-    <div className="ml-flex ml-flex-col ml-leading-relaxed ml-font-mono ml-text-xs ml-text-gray-600 ml-mx-4 ml-my-5 ml-text-left ">
+    <div className="ml-flex ml-flex-col ml-leading-relaxed ml-font-mono ml-text-base ml-text-gray-600 ml-mx-4 ml-my-5 ml-text-left ">
       <p className="ml-overflow-y-auto ml-mb-64">
+        {curTime}
         {(() => {
           if (captions && captions.context) {
             return captions.context.map((text, idx) => (
@@ -34,9 +35,6 @@ const Caption: React.FC = () => {
                     type: 'setTime',
                     payload: { time: captions.startTime[idx] },
                   });
-                  document.querySelector('video')!.currentTime =
-                    captions.startTime[idx];
-                  document.querySelector('video')!.play();
                 }}>
                 {text}
               </StyledSpan>

@@ -10,7 +10,7 @@ const Inject: React.FC = () => {
   return (
     <VideoProvider>
       <div ref={rootRef}>
-        <MulanDrawer isExtension={true} keep={false} rootRef={rootRef} />
+        <MulanDrawer keep={false} rootRef={rootRef} />
       </div>
     </VideoProvider>
   );
