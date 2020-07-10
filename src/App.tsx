@@ -8,16 +8,15 @@ function App() {
   return (
     <BrowserRouter>
       <Helmet>
-        {/* TODO: rename */}
-        <title>Mulan - video helper</title>
+        <title>Mulan - Video Assistant</title>
       </Helmet>
       <Switch>
+        <Route exact path="/player" component={Player} />
         <Route path="/home" component={Home} />
-        <Route path="/player" component={Player} />
         <Route path="/404">
           <div>404</div>
         </Route>
-        <Redirect to="/404" />
+        <Redirect to="/player" />
       </Switch>
     </BrowserRouter>
   );
