@@ -9,14 +9,16 @@ import { videoContext } from '@src/common/context/VideoProvider';
 interface Props {
   rootRef: RefObject<HTMLDivElement>;
   keep: boolean;
+  isExtension: boolean;
 }
 
 const rightDrawerWidth = 360;
 
-const MulanDrawer: React.FC<Props> = ({ keep, rootRef }) => {
-  const [isDrawerOpen, setDrawerOpen] = useState(false);
+const MulanDrawer: React.FC<Props> = ({ isExtension, keep, rootRef }) => {
+  const [isDrawerOpen, setDrawerOpen] = useState(!isExtension && true);
   const { video } = useContext(videoContext);
   const { imgs } = video;
+
   useVideoListener();
 
   return (

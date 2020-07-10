@@ -28,12 +28,16 @@ const SnapshotInfo: React.FC<SnapshotInfoProps> = ({ time, url }) => {
       placement="top">
       <StyledCard
         raised
-        className="ml-flex-shrink-0 ml-bottom-0 ml-w-64 ml-h-44 ml-mx-4 ml-my-8">
+        className="ml-flex-shrink-0 ml-bottom-0 ml-w-64 ml-h-40 ml-mx-4 ml-my-8">
         <CardMedia
           component="img"
           alt="ppt"
           image={url}
-          onClick={() => dispatch({ type: 'setTime', payload: { time } })}
+          onClick={() => {
+            dispatch({ type: 'setTime', payload: { time } });
+            document.querySelector('video')!.currentTime = time;
+            document.querySelector('video')!.play();
+          }}
         />
       </StyledCard>
     </Tooltip>
