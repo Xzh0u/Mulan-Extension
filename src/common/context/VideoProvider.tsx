@@ -18,7 +18,6 @@ const initialVideoContext = {
 export const videoContext = createContext(initialVideoContext);
 
 const reducer = (state: VideoContextType, action: ActionType) => {
-  debugger;
   switch (action.type) {
     case 'setTime':
       return {

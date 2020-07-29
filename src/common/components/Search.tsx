@@ -16,14 +16,36 @@ const StyledTextField = styled(TextField)`
 `;
 
 const Search: React.FC = () => {
-  const { video } = useContext(videoContext);
+  const { video, dispatch } = useContext(videoContext);
   const { captions } = video;
+
+  const captionStartTime = (caption: string) => {
+    captions.context.map((text, idx) => {
+      if (caption === text) {
+        dispatch({
+          type: 'setTime',
+          payload: { time: captions.startTime[idx] + 1 },
+        });
+        document.querySelector('video')!.currentTime = captions.startTime[idx];
+        document.querySelector('video')!.play();
+      }
+      // debugger;
+    });
+  };
 
   return (
     <div className="ml-w-3/5">
       <Autocomplete
         className="ml-text-left"
         id="searchBar"
+        autoHighlight={true}
+        clearOnEscape={true}
+        autoComplete={true}
+        onChange={(_, value) => {
+          if (value) {
+            captionStartTime(value);
+          }
+        }}
         freeSolo
         options={captions.context}
         renderInput={params => (

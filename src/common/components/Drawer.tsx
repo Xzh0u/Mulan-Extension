@@ -7,7 +7,8 @@ const StyledDrawerDrawer = styled(MDrawer)`
     .MuiDrawer-paper {
         ${containerstyle}
     }
-`}
+`};
+  overflow-y: hidden !important;
 `;
 
 interface Props extends DrawerProps {
@@ -16,9 +17,7 @@ interface Props extends DrawerProps {
 
 const Drawer: React.FC<Props> = ({ children, ...rest }) => {
   return (
-    <StyledDrawerDrawer
-      variant="persistent"
-      {...rest}>
+    <StyledDrawerDrawer variant="persistent" {...rest}>
       {children}
     </StyledDrawerDrawer>
   );
