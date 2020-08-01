@@ -1,26 +1,41 @@
 import { Upload, message } from 'antd';
 import { InboxOutlined } from '@ant-design/icons';
-import React from 'react';
+import { videoContext } from '@src/common/context/VideoProvider';
+import React, { useContext } from 'react';
 const { Dragger } = Upload;
 
-const props = {
-  name: 'file',
-  multiple: true,
-  action: 'http://127.0.0.1:5000/',
-  onChange(info: any) {
-    const { status } = info.file;
-    if (status !== 'uploading') {
-      console.log(info.file, info.fileList);
-    }
-    if (status === 'done') {
-      message.success(`${info.file.name} file uploaded successfully.`);
-    } else if (status === 'error') {
-      message.error(`${info.file.name} file upload failed.`);
-    }
-  },
-};
-
 const UploadBox: React.FC = () => {
+  const { dispatch, file } = useContext(videoContext);
+  const props = {
+    name: 'file',
+    multiple: true,
+    action: 'http://127.0.0.1:5000/',
+    method: 'post' as const,
+    onChange(info: any) {
+      const { status } = info.file;
+      // console.log(window.URL.createObjectURL(info.file.originFileObj));
+      if (status === 'done') {
+        message.success(`${info.file.name} file uploaded successfully.`);
+        return;
+      } else if (status === 'error') {
+        message.error(`${info.file.name} file upload failed.`);
+        return;
+      }
+      // if (status !== 'uploading') {
+      //   console.log(info.file, info.fileList);
+      //   return;
+      // }
+      debugger;
+      if (file) {
+        return;
+      }
+      dispatch({
+        type: 'setFile',
+        payload: { file: info.file.originFileObj },
+      });
+    },
+  };
+
   return (
     <Dragger {...props}>
       <p className="ant-upload-drag-icon">

@@ -1,5 +1,10 @@
 import React, { createContext, useReducer, Dispatch, RefObject } from 'react';
 
+interface File extends Blob {
+  readonly lastModified: number;
+  readonly name: string;
+}
+
 const initialVideoContext = {
   rootRef: (undefined as unknown) as RefObject<HTMLDivElement>,
   video: {
@@ -11,6 +16,7 @@ const initialVideoContext = {
     } as CaptionType,
     imgs: [] as ImageType[],
   },
+  file: null as null | File,
   dispatch: (undefined as unknown) as Dispatch<ActionType>,
   status: { status: 'empty' } as Status,
 };
@@ -43,6 +49,12 @@ const reducer = (state: VideoContextType, action: ActionType) => {
           captions: action.payload.captions,
         },
       };
+    case 'setFile':
+      debugger;
+      return {
+        ...state,
+        file: action.payload.file,
+      };
     default:
       return state;
   }
@@ -67,7 +79,8 @@ type ActionType =
   | { type: 'test'; payload: { test: string } }
   | { type: 'setTime'; payload: { time: number } }
   | { type: 'setImgs'; payload: { imgs: ImageType[] } }
-  | { type: 'setCaptions'; payload: { captions: CaptionType } };
+  | { type: 'setCaptions'; payload: { captions: CaptionType } }
+  | { type: 'setFile'; payload: { file: File } };
 
 export interface CaptionType {
   context: string[];
