@@ -8,7 +8,7 @@ const Header: React.FC = () => {
   return (
     <div
       className={
-        'ml-shadow ml-flex ml-items-center ml-bg-white ml-w-full ml-z-9999 ml-px-4'
+        'ml-shadow ml-flex ml-items-center ml-bg-white ml-w-full ml-z-9999 ml-px-4 ml-fixed'
       }>
       <Search />
       <IconButton size="small" className="ml-m-2">

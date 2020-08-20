@@ -5,6 +5,15 @@ import { CaptionType } from '@src/common/context/VideoProvider';
 
 const focusCaption = (curTime: number, caption: CaptionType, idx: number) => {
   if (curTime > caption.startTime[idx] && curTime < caption.endTime[idx]) {
+    var id = idx.toString();
+    var element = document.getElementById(id);
+    if (element) {
+      element.scrollIntoView({
+        behavior: 'smooth',
+        block: 'center',
+        inline: 'nearest',
+      });
+    }
     return true;
   }
   return false;
@@ -21,11 +30,12 @@ const Caption: React.FC = () => {
   debugger;
   return (
     <div className="ml-flex ml-flex-col ml-leading-relaxed ml-font-mono ml-text-xs ml-text-gray-600 ml-mx-4 ml-my-5 ml-text-left">
-      <p className="ml-overflow-y-auto ml-mb-64">
+      <p className="ml-overflow-y-auto ml-mb-64 ml-my-12">
         {(() => {
           if (captions && captions.context) {
             return captions.context.map((text, idx) => (
               <StyledSpan
+                id={idx.toString()}
                 focused={focusCaption(curTime, captions, idx)}
                 tabIndex={0}
                 key={idx}

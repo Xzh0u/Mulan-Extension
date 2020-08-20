@@ -34,7 +34,7 @@ const Search: React.FC = () => {
   };
 
   return (
-    <div className="ml-w-3/5">
+    <div className="ml-w-48">
       <Autocomplete
         className="ml-text-left"
         id="searchBar"
